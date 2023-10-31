@@ -110,3 +110,16 @@ font-family: 'Poppins', sans-serif; */
   background-color: #434343;
   color: white;
 } */
+
+
+/* ================================
+==============register page===== */
+.register{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  flex-direction: column;
+}
+
+

@@ -13,13 +13,19 @@ const Policy = () => {
           />
         </div>
         <div className="col-md-4">
-          <p>add privacy policy</p>
-          <p>add privacy policy</p>
-          <p>add privacy policy</p>
-          <p>add privacy policy</p>
-          <p>add privacy policy</p>
-          <p>add privacy policy</p>
-          <p>add privacy policy</p>
+          <p>
+            Our ecommerce website prioritizes your privacy and data security
+            with a detailed Privacy Policy. We collect and safeguard your
+            information, use cookies to enhance your experience, and may share
+            data with trusted partners for service improvement. Our Return and
+            Refund Policy allows returns within a specified timeframe, and
+            refunds are processed promptly. Our Shipping Policy ensures
+            transparency regarding shipping times, costs, and handling of lost
+            or damaged items. Our Terms and Conditions cover order acceptance,
+            product descriptions, liability, and more. By adhering to these
+            policies, we aim to provide a secure, transparent, and
+            customer-friendly shopping experience for all our visitors.
+          </p>
         </div>
       </div>
     </Layout>

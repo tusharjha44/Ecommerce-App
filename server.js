@@ -3,6 +3,7 @@ import connectDB from "./config/db.js";
 import colors from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import cors from "cors";
 import authRoutes from "./routes/authRoute.js";
 
 //configure env
@@ -15,6 +16,7 @@ connectDB();
 const app = express();
 
 //Middlewares
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
