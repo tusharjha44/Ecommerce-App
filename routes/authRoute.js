@@ -17,6 +17,11 @@ router.post("/register", registerController);
 router.post("/login", loginController);
 
 //Test route
-router.get("/test", middle.requireSignIn,middle.isAdmin, testController);
+router.get("/test", middle.requireSignIn, middle.isAdmin, testController);
+
+//protected route auth
+router.get("/user-auth", middle.requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 export default router;
