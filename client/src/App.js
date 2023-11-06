@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import Policy from "./pages/Policy";
 import Dashboard from "./pages/user/Dashboard";
+import ForgotPassword from './pages/Auth/ForgotPassword';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="" element={<Dashboard />} />
         </Route>
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />
