@@ -29,7 +29,7 @@ router.get("/user-auth", middle.requireSignIn, (req, res) => {
 });
 
 //protected route auth for admin
-router.get("/admin-auth", middle.requireSignIn,middle.isAdmin, (req, res) => {
+router.get("/admin-auth", middle.requireSignIn, middle.isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
