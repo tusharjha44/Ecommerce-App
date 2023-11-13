@@ -10,7 +10,6 @@ const AuthProvider = ({ children }) => {
   });
 
   //default axios
-//   console.log(auth?.token);
   axios.defaults.headers.common['Authorization'] = auth?.token;
 
   useEffect(() => {
@@ -32,6 +31,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+//custom hook
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };

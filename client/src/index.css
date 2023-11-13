@@ -122,4 +122,8 @@ font-family: 'Poppins', sans-serif; */
   flex-direction: column;
 }
 
+.product-link{
+  text-decoration: none !important;
+  color: #000 !important;
+}
 

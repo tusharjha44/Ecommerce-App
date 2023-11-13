@@ -15,7 +15,6 @@ export default function PrivateRoute() {
       const res = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/user-auth`);
       console.log(res.data);
       if (res.data.ok) {
-        console.log("HELLO");
         setOk(true);
       } else {
         setOk(false);
