@@ -2,7 +2,6 @@ import productModels from "../models/productModels.js";
 import fs from "fs";
 import slugify from "slugify";
 
-
 //create product
 export const createProductController = async (req, res) => {
   try {
@@ -114,7 +113,9 @@ export const getSingleProductController = async (req, res) => {
 //get photo
 export const productPhotoController = async (req, res) => {
   try {
-    const product = await productModels.findById(req.params.pid).select("photo");
+    const product = await productModels
+      .findById(req.params.pid)
+      .select("photo");
     if (product.photo.data) {
       res.set("Content-type", product.photo.contentType);
       return res.status(200).send(product.photo.data);
@@ -174,6 +175,71 @@ export const updateProductController = async (req, res) => {
       success: false,
       message: "Error ",
       error,
+    });
+  }
+};
+
+//Filter Products
+export const fillterProductController = async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+    let args = {};
+    if (checked.length > 0) args.category = checked;
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+    const products = await productModels.find(args);
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({
+      success: false,
+      message: "Error ",
+      e,
+    });
+  }
+};
+
+//product count
+export const productCountController = async (req, res) => {
+  try {
+    const total = await productModels.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      success: true,
+      total,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({
+      success: false,
+      message: "Error in product count",
+      e,
+    });
+  }
+};
+
+//product list based on page
+export const productPerPageController = async (req, res) => {
+  try {
+    const perPage = 6;
+    const page = req.params.page ? req.params.page : 1;
+    const products = await productModels
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+      res.status(200).send({
+        success: true,
+        products,
+      });
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({
+      success: false,
+      message: "Error in getting products",
+      e,
     });
   }
 };
