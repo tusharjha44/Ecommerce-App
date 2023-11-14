@@ -230,15 +230,62 @@ export const productPerPageController = async (req, res) => {
       .skip((page - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
-      res.status(200).send({
-        success: true,
-        products,
-      });
+    res.status(200).send({
+      success: true,
+      products,
+    });
   } catch (e) {
     console.log(e);
     res.status(400).send({
       success: false,
       message: "Error in getting products",
+      e,
+    });
+  }
+};
+
+export const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await productModels
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-photo");
+    res.json(results);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({
+      success: false,
+      message: "Error while searching  product",
+      e,
+    });
+  }
+};
+
+export const relatedProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productModels
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({
+      success: false,
+      message: "Error while getting related product",
       e,
     });
   }

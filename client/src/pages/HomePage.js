@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   // eslint-disable-next-line no-unused-vars
+  const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -183,12 +184,12 @@ const HomePage = () => {
                     </h5>
                   </div>
                   <p className="card-text ">
-                    {p.description.substring(0, 60)}...
+                    {p.description.substring(0, 30)}...
                   </p>
                   <div className="card-name-price">
                     <button
                       className="btn btn-info ms-1"
-                      // onClick={() => navigate(`/product/${p.slug}`)}
+                      onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
                     </button>
