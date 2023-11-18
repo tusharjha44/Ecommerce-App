@@ -1,6 +1,7 @@
 import productModels from "../models/productModels.js";
 import fs from "fs";
 import slugify from "slugify";
+import categoryModel from "../models/CategoryModel.js"
 
 //create product
 export const createProductController = async (req, res) => {
@@ -287,6 +288,26 @@ export const relatedProductController = async (req, res) => {
       success: false,
       message: "Error while getting related product",
       e,
+    });
+  }
+};
+
+// get prdocyst by catgory
+export const productCategoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const products = await productModels.find({ category }).populate("category");
+    res.status(200).send({
+      success: true,
+      category,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting products",
     });
   }
 };

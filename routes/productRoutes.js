@@ -11,6 +11,7 @@ import {
   searchProductController,
   updateProductController,
   productPerPageController,
+  productCategoryController,
 } from "../controllers/productController.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
@@ -61,5 +62,8 @@ router.get("/search/:keyword", searchProductController);
 
 //related product
 router.get("/related-product/:pid/:cid", relatedProductController);
+
+//category wise product
+router.get("/product-category/:slug", productCategoryController);
 
 export default router;
