@@ -7,10 +7,13 @@ import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
 
 const HomePage = () => {
   // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
+  const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -197,14 +200,14 @@ const HomePage = () => {
                     </button>
                     <button
                       className="btn btn-dark ms-1"
-                      // onClick={() => {
-                      //   setCart([...cart, p]);
-                      //   localStorage.setItem(
-                      //     "cart",
-                      //     JSON.stringify([...cart, p])
-                      //   );
-                      //   toast.success("Item Added to cart");
-                      // }}
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item Added to cart");
+                      }}
                     >
                       ADD TO CART
                     </button>
