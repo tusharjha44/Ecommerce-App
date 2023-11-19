@@ -9,6 +9,7 @@ import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
+import "../styles/HomePages.css";
 
 const HomePage = () => {
   // eslint-disable-next-line no-unused-vars
@@ -233,6 +234,7 @@ const HomePage = () => {
       </div>
     </Layout>
   );
+  
 };
 
 export default HomePage;

@@ -196,3 +196,23 @@ export const updateProfileController = async (req, res) => {
     });
   }
 };
+
+
+//get user
+export const getUserController = async(req,res) => {
+  try{
+    const users = await userModel.find({role: 0});
+    res.status(200).send({
+      success: true,
+      message: "Users found",
+      users
+    })
+  }catch (e) {
+    console.log(e);
+    res.status(400).send({
+      success: false,
+      message: "Something Went Wrong",
+      error,
+    });
+  }
+}

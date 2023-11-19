@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
-import DropIn from "braintree-web-drop-in-react";
 import "../styles/CartStyles.css";
 
 const CartPage = () => {
   const [auth] = useAuth();
   const [cart, setCart] = useCart();
-  const [clientToken] = useState("");
-  const [ setInstance] = useState("");
   const navigate = useNavigate();
 
   //total price
@@ -132,31 +129,6 @@ const CartPage = () => {
                   )}
                 </div>
               )}
-              <div className="mt-2">
-                {!clientToken || !auth?.token || !cart?.length ? (
-                  ""
-                ) : (
-                  <>
-                    <DropIn
-                      options={{
-                        authorization: clientToken,
-                        paypal: {
-                          flow: "vault",
-                        },
-                      }}
-                      onInstance={(instance) => setInstance(instance)}
-                    />
-
-                    {/* <button
-                      className="btn btn-primary"
-                      onClick={handlePayment}
-                      disabled={loading || !instance || !auth?.user?.address}
-                    >
-                      {loading ? "Processing ...." : "Make Payment"}
-                    </button> */}
-                  </>
-                )}
-              </div>
             </div>
           </div>
         </div>
