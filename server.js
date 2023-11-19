@@ -35,10 +35,6 @@ app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
 //REST API
-app.get("/", (req, res) => {
-  res.send("<h1> Welcome to the ecommerce app</h1>");
-});
-
 app.use("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
